@@ -13,6 +13,17 @@ function AddApartmentPage() {
     // Create the body for the POST request    
     const body = { title: headline, pricePerDay: price };
     
+    Ironbnb.saveAparment(body)
+    .then((newApt)=>{
+      console.log(newApt)
+        //reset the state
+        setHeadline("");
+        setPrice(1)
+
+        //Navigate to the "/" page
+        navigate("/")
+    })
+    
     axios
       .post("https://ironbnb-m3.herokuapp.com/apartments", body)
       .then((response) => {
